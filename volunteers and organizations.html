@@ -1,0 +1,127 @@
+<html>
+<head>
+  <title>Volunteer and Organization Registration</title>
+  <link rel="stylesheet" href="stylesheet.css">
+  <style type="text/css">
+
+    h2 {
+      color: black;
+      margin-top: 30px;
+    }
+
+    form {
+      background-color: white;
+      border: 1px solid beige;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid gray;
+      font-size: 15px;
+    }
+
+    input[type="submit"] {
+      background-color:blueviolet;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: blueviolet;
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <h1>Senior Care</h1>
+        <nav class="navbar">
+            <ul>
+                <li><img src="logo.jpg" style="width: 45px; height: 45px;" alt="logo"></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact us.html">Contact Us</a></li>
+                <li><a href="about us.html">About Us</a></li>
+                <li><a href="services directory.html">Services Directory</a></li>
+                <li><a href="forum page.html">Community Forum</a></li>
+                <li><a href="">Health and Wellness Resource Center</a></li>
+                <li><a href="volunteers and organizations.html">Volunteers and Organizations</a></li>
+                <li><a href="events.html">Events</a></li>
+            </ul>
+        </nav>
+    </header>
+  <h2>Volunteers and Organizations</h2>
+  <div class="container">
+  <h1 style="color: blue;">Looking to help us? Join us now!</h1>
+  <p style="font-size: 20px;">If you are a volunteer or an organization looking to join our platform 
+    and offer services such as companionship,  home assistance or event hosting, 
+    simply fill the form below with your skills or programs you can offer.</p>
+    </div>
+    <h2>Volunteer Registration Form:</h2>
+  <form action="/submit-volunteer" method="post">
+    <label for="Name">Full Name</label>
+    <input type="text" id="Name" name="volunteerName" required>
+
+    <label for="Email">Email</label>
+    <input type="email" id="Email" name="volunteerEmail" required>
+
+    <label for="Phone">Phone Number</label>
+    <input type="tel" id="Phone" name="volunteerPhone">
+
+    <label for="Availability">Availability</label>
+    <select id="Availability" name="volunteerAvailability">
+      <option value="">Select...</option>
+      <option value="Weekdays">Weekdays</option>
+      <option value="Weekends">Weekends</option>
+    </select>
+
+    <input type="submit" value="Register as Volunteer">
+  </form>
+
+  <h2>Organization Registration Form:</h2>
+  <form action="/submit-organization" method="post">
+    <label for="orgName">Organization Name</label>
+    <input type="text" id="orgName" name="organization_name" required>
+
+    <label for="Contact">Contact Person</label>
+    <input type="text" id="Contact" name="organizationContact" required>
+
+    <label for="orgEmail">Email</label>
+    <input type="email" id="orgEmail" name="organizationEmail" required>
+
+    <label for="orgPhone">Phone Number</label>
+    <input type="tel" id="orgPhone" name="organizationPhone">
+
+    <label for="Services">Services Provided</label>
+    <textarea id="Services" name="organizationServices" rows="4"></textarea>
+
+    <input type="submit" value="Register Organization">
+  </form>
+  <footer>
+    <img src="logo.jpg" style="width: 100px; height: 100px; float: right;" alt="logo">
+    <h3>Contact Info:</h3>
+    <p>Phone: +968 7845 2247</p>
+    <p>Email: SeniorCareOM@gmail.com</p>
+    <p>Copyright © 2025 SeniorCareOM</p>
+</footer>
+</body>
+</html>
