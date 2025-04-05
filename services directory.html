@@ -1,0 +1,157 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="stylesheet.css">
+        <style type="text/css">
+            table {
+      width: 90%;
+      margin: 30px auto;
+      border-collapse: separate;
+      border-spacing: 10px;
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    thead {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    th, td {
+      padding: 20px 25px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    th {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    td {
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      background-color: #f1f8e9;
+    }
+
+    /* Rounded corners only on the top and bottom */
+    thead tr:first-child th:first-child {
+      border-top-left-radius: 12px;
+    }
+
+    thead tr:first-child th:last-child {
+      border-top-right-radius: 12px;
+    }
+
+    tbody tr:last-child td:first-child {
+      border-bottom-left-radius: 12px;
+    }
+
+    tbody tr:last-child td:last-child {
+      border-bottom-right-radius: 12px;
+    }
+    
+    .highlight-cell {
+      background-color: #e8f5e9;
+      font-weight: bold;
+    }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Senior Care</h1>
+            <nav class="navbar">
+                <ul>
+                    <li><img src="logo.jpg" style="width: 45px; height: 45px;" alt="logo"></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="contact us.html">Contact Us</a></li>
+                    <li><a href="about us.html">About Us</a></li>
+                    <li><a href="services directory.html">Services Directory</a></li>
+                    <li><a href="forum page.html">Community Forum</a></li>
+                    <li><a href="">Health and Wellness Resource Center</a></li>
+                    <li><a href="">Volunteers and Organizations</a></li>
+                    <li><a href="">Events</a></li>
+                </ul>
+            </nav>
+        </header>
+        <h2>Services Directory</h2>
+        <p style="font-size: 20px; font-weight: bold; text-align: center;">List of currently available services</p>
+        <table>
+            <thead>
+              <tr>
+                <th colspan="3">Senior Care Services Directory</th>
+              </tr>
+              <tr>
+                <th>Service Type</th>  <!-- Changed from "Service Name" -->
+                <th>Category</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2" class="highlight-cell">Health Services</td>
+                <td>Health Consultation</td>
+                <td>Virtual access to doctors and nurses for medical advice and support.</td>
+              </tr>
+              <tr>
+                <td>Mental Health Support</td>
+                <td>Professional counseling and support groups for emotional well-being.</td>
+              </tr>
+              <tr>
+                <td rowspan="3" class="highlight-cell">Daily Living Support</td>
+                <td>Caregiver Assistance</td>
+                <td>Help and resources for caregivers, plus access to professional care.</td>
+              </tr>
+              <tr>
+                <td>Home Repair Services</td>
+                <td>Help with minor repairs and safety upgrades to keep homes comfortable and secure.</td>
+              </tr>
+              <tr>
+                <td>Grocery Delivery</td>
+                <td>Convenient grocery and meal delivery, customized for senior nutrition needs.</td>
+              </tr>
+              <tr>
+                <td class="highlight-cell">Social Activities</td>  <!-- Added specific service name -->
+                <td>Social Events</td>
+                <td>Join online games, discussions, and group activities to connect with others.</td>
+              </tr>
+              <tr>
+                <td rowspan="2" class="highlight-cell">Professional Services</td>
+                <td>Legal Aid</td>
+                <td>Consult with legal experts on wills, rights, and elder law at little or no cost.</td>
+              </tr>
+              <tr>
+                <td>Financial Planning</td>
+                <td>Get help with budgeting, retirement plans, and social security assistance.</td>
+              </tr>
+              <tr>
+                <td class="highlight-cell">Transportation Services</td>
+                <td>Transportation</td>
+                <td>Access reliable transport to appointments, grocery stores, or social events.</td>
+              </tr>
+              <tr>
+                <td class="highlight-cell">Technology Assistance</td>
+                <td>Technology Support</td>
+                <td>Friendly tech help to navigate phones, apps, computers, and more.</td>
+              </tr>
+            </tbody>
+          </table>
+        <footer>
+            <img src="logo.jpg" style="width: 100px; height: 100px; float: right;" alt="logo">
+            <h3>Contact Info:</h3>
+            <p>Phone: +968 7845 2247</p>
+            <p>Email: SeniorCareOM@gmail.com</p>
+            <p>Copyright © 2025 SeniorCareOM</p>
+        </footer>
+    </body>
+</html>
