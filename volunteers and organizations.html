@@ -1,127 +1,169 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Volunteer and Organization Registration</title>
-  <link rel="stylesheet" href="stylesheet.css">
-  <style type="text/css">
-
-    h2 {
-      color: black;
-      margin-top: 30px;
-    }
-
-    form {
-      background-color: white;
-      border: 1px solid beige;
-      border-radius: 10px;
-      padding: 10px;
-      margin-bottom: 30px;
-    }
-
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    textarea,
-    select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid gray;
-      font-size: 15px;
-    }
-
-    input[type="submit"] {
-      background-color:blueviolet;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      margin-top: 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 15px;
-    }
-
-    input[type="submit"]:hover {
-      background-color: blueviolet;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteers and Organizations - Senior Care</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .custom-bg {
+            background-image: url('background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <h1>Senior Care</h1>
-    <nav class="navbar">
-        <ul>
-            <li><img src="logo.jpg" style="width: 45px; height: 45px;" alt="logo"></li>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="contact us.html">Contact Us</a></li>
-            <li><a href="about us.html">About Us</a></li>
-            <li><a href="services directory.html">Services Directory</a></li>
-            <li><a href="forum page.html">Community Forum</a></li>
-            <li><a href="resource_page.html">Health and Wellness Resource Center</a></li>
-            <li><a href="volunteers and organizations.html">Volunteers and Organizations</a></li>
-            <li><a href="events.html">Events</a></li>
-        </ul>
-    </nav>
-</header>
-  <h2>Volunteers and Organizations</h2>
-  <div class="container">
-  <h1 style="color: blue;">Looking to help us? Join us now!</h1>
-  <p style="font-size: 20px;">If you are a volunteer or an organization looking to join our platform 
-    and offer services such as companionship,  home assistance or event hosting, 
-    simply fill the form below with your skills or programs you can offer.</p>
-    </div>
-    <h2>Volunteer Registration Form:</h2>
-  <form action="https://httpbin.org/get" method="get">
-    <label for="Name">Full Name</label>
-    <input type="text" id="Name" name="volunteerName" required>
+<body class="custom-bg">
+    <header class="bg-primary text-white p-3">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <h1 class="mb-0">Senior Care</h1>
+                <nav class="navbar navbar-expand-lg navbar-dark">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact us.html">Contact Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="services directory.html">Services Directory</a></li>
+                            <li class="nav-item"><a class="nav-link" href="forum page.html">Community Forum</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resource_page.html">Health and Wellness Resource Center</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="volunteers and organizations.html">Volunteers and Organizations</a></li>
+                            <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-    <label for="Email">Email</label>
-    <input type="email" id="Email" name="volunteerEmail" required>
+    <main class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Volunteers and Organizations</h2>
+                <div class="card p-4 mb-4">
+                    <h1 class="text-primary text-center mb-3">Looking to help us? Join us now!</h1>
+                    <p class="fs-5 text-center">
+                        If you are a volunteer or an organization looking to join our platform 
+                        and offer services such as companionship, home assistance or event hosting, 
+                        simply fill the form below with your skills or programs you can offer.
+                    </p>
+                </div>
 
-    <label for="Phone">Phone Number</label>
-    <input type="tel" id="Phone" name="volunteerPhone">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="card-title text-center mb-4">Volunteer Registration Form</h2>
+                                <form action="https://httpbin.org/get" method="get" class="needs-validation" novalidate>
+                                    <div class="mb-3">
+                                        <label for="Name" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="Name" name="volunteerName" required>
+                                        <div class="invalid-feedback">Please enter your full name.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="Email" name="volunteerEmail" required>
+                                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Phone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="Phone" name="volunteerPhone">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Availability" class="form-label">Availability</label>
+                                        <select class="form-select" id="Availability" name="volunteerAvailability" required>
+                                            <option value="" selected disabled>Select...</option>
+                                            <option value="Weekdays">Weekdays</option>
+                                            <option value="Weekends">Weekends</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select your availability.</div>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary">Register as Volunteer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="card-title text-center mb-4">Organization Registration Form</h2>
+                                <form action="https://httpbin.org/get" method="get" class="needs-validation" novalidate>
+                                    <div class="mb-3">
+                                        <label for="orgName" class="form-label">Organization Name</label>
+                                        <input type="text" class="form-control" id="orgName" name="organization_name" required>
+                                        <div class="invalid-feedback">Please enter your organization name.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Contact" class="form-label">Contact Person</label>
+                                        <input type="text" class="form-control" id="Contact" name="organizationContact" required>
+                                        <div class="invalid-feedback">Please enter a contact person.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="orgEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="orgEmail" name="organizationEmail" required>
+                                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="orgPhone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="orgPhone" name="organizationPhone">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Services" class="form-label">Services Provided</label>
+                                        <textarea class="form-control" id="Services" name="organizationServices" rows="4" required></textarea>
+                                        <div class="invalid-feedback">Please describe the services you provide.</div>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary">Register Organization</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    <label for="Availability">Availability</label>
-    <select id="Availability" name="volunteerAvailability">
-      <option value="">Select...</option>
-      <option value="Weekdays">Weekdays</option>
-      <option value="Weekends">Weekends</option>
-    </select>
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>Contact Info:</h3>
+                    <p>Phone: +968 7845 2247</p>
+                    <p>Email: SeniorCareOM@gmail.com</p>
+                    <p>Copyright © 2025 SeniorCareOM</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <img src="logo.jpg" class="img-fluid" style="width: 100px; height: 100px;" alt="logo">
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    <input type="submit" value="Register as Volunteer">
-  </form>
-
-  <h2>Organization Registration Form:</h2>
-  <form action="https://httpbin.org/get" method="get">
-    <label for="orgName">Organization Name</label>
-    <input type="text" id="orgName" name="organization_name" required>
-
-    <label for="Contact">Contact Person</label>
-    <input type="text" id="Contact" name="organizationContact" required>
-
-    <label for="orgEmail">Email</label>
-    <input type="email" id="orgEmail" name="organizationEmail" required>
-
-    <label for="orgPhone">Phone Number</label>
-    <input type="tel" id="orgPhone" name="organizationPhone">
-
-    <label for="Services">Services Provided</label>
-    <textarea id="Services" name="organizationServices" rows="4"></textarea>
-
-    <input type="submit" value="Register Organization">
-  </form>
-  <footer>
-    <img src="logo.jpg" style="width: 100px; height: 100px; float: right;" alt="logo">
-    <h3>Contact Info:</h3>
-    <p>Phone: +968 7845 2247</p>
-    <p>Email: SeniorCareOM@gmail.com</p>
-    <p>Copyright © 2025 SeniorCareOM</p>
-</footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Form validation
+        (function() {
+            'use strict';
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms)
+                .forEach(function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+        })();
+    </script>
 </body>
 </html>

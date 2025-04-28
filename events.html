@@ -1,128 +1,242 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="stylesheet.css">
-  <title>Events</title>
-  <style type="text/css">
+    <style>
+        .custom-bg {
+            background-image: url('background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+        }
+        #searchResults {
+            margin-top: 20px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Senior Care</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        // Object constructor for Events
+        function Event(category, activity, description) {
+            this.category = category;
+            this.activity = activity;
+            this.description = description;
+        }
 
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 6px;
-      border: 2px solid blueviolet;
-      background-color: white;
-    }
+        // Array to store events
+        let eventsArray = [
+            new Event("Health & Wellness", "Virtual Exercise Classes", "Chair yoga, stretching, and low-impact aerobics are examples of online exercise programs. Accessible live or on demand to promote flexibility and physical wellness at the senior's own pace."),
+            new Event("Health & Wellness", "Cooking and Nutrition Webinars", "Classes on healthy cooking that include meal planning, senior nutrition recipes and advice, and simple culinary demonstrations to encourage healthier eating and overall wellbeing."),
+            new Event("Health & Wellness", "Health and Wellness Webinars", "Health specialists lead sessions on mental health, preventive care, and managing chronic diseases to educate and empower seniors with useful guidance."),
+            new Event("Learning & Personal Development", "Book Club", "A virtual reading group with monthly book selections and video discussions."),
+            new Event("Learning & Personal Development", "Tech Help Sessions", "Basic digital training sessions, teaching seniors how to use smartphones, computers and other digital devices"),
+            new Event("Learning & Personal Development", "Local History and Culture Tours", "local guided tours of museums and historical sites."),
+            new Event("Creative & Social Engagement", "Gardening Workshops", "Classes on gardening methods such as container planting and herb growing can be held indoors or outdoors."),
+            new Event("Creative & Social Engagement", "Art and Craft Classes", "Creative workshops including painting, knitting, or scrapbooking."),
+            new Event("Creative & Social Engagement", "Volunteer Match Program", "connects elderly people with neighborhood volunteers for housework, errands, or company. Builds meaningful relationships."),
+            new Event("Creative & Social Engagement", "Outdoor Camping Experiences", "Organized day trips or overnight camping tailored to seniors. Activities include nature walks, birdwatching, and storytelling for outdoor enjoyment and social bonding.")
+        ];
 
-    th, td {
-      padding: 15px;
-      border: 1px solid black;
-      vertical-align: top;
-      text-align: left;
-    }
+        // Function to display events in the table
+        function displayEvents() {
+            const tableBody = document.getElementById('eventsTableBody');
+            tableBody.innerHTML = '';
+            
+            let currentCategory = '';
+            
+            eventsArray.forEach(event => {
+                if (currentCategory !== event.category) {
+                    currentCategory = event.category;
+                    
+                    // Add category header row
+                    const categoryRow = document.createElement('tr');
+                    categoryRow.className = 'table-info';
+                    categoryRow.innerHTML = `<td colspan="2" class="text-center fw-bold">${event.category}</td>`;
+                    tableBody.appendChild(categoryRow);
+                }
+                
+                // Add event row
+                const eventRow = document.createElement('tr');
+                eventRow.innerHTML = `
+                    <td>${event.activity}</td>
+                    <td>${event.description}</td>
+                `;
+                tableBody.appendChild(eventRow);
+            });
+        }
 
-    th {
-      background-color: blueviolet;
-      color: white;
-      font-size: 18px;
-    }
+        // Function to add a new event
+        function addEvent() {
+            const category = document.getElementById('eventCategory').value;
+            const activity = document.getElementById('eventActivity').value;
+            const description = document.getElementById('eventDescription').value;
+            
+            if (category && activity && description) {
+                const newEvent = new Event(category, activity, description);
+                eventsArray.push(newEvent);
+                displayEvents();
+                
+                // Clear form fields
+                document.getElementById('eventCategory').value = '';
+                document.getElementById('eventActivity').value = '';
+                document.getElementById('eventDescription').value = '';
+            } else {
+                alert('Please fill in all fields');
+            }
+        }
 
-    .section-header {
-      background-color: paleturquoise;
-      font-weight: bold;
-      text-align: center;
-      font-size: 17px;
-    }
+        // Function to search events
+        function searchEvents() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const searchResults = document.getElementById('searchResults');
+            
+            if (!searchTerm) {
+                searchResults.innerHTML = '';
+                return;
+            }
+            
+            const filteredEvents = eventsArray.filter(event => 
+                event.category.toLowerCase().includes(searchTerm) || 
+                event.activity.toLowerCase().includes(searchTerm) || 
+                event.description.toLowerCase().includes(searchTerm)
+            );
+            
+            if (filteredEvents.length === 0) {
+                searchResults.innerHTML = '<p class="alert alert-info">No matching events found</p>';
+                return;
+            }
+            
+            let resultsHTML = '<div class="table-responsive"><table class="table table-bordered table-hover">';
+            resultsHTML += '<thead><tr class="table-primary"><th>Activity</th><th>Category</th><th>Description</th></tr></thead><tbody>';
+            
+            filteredEvents.forEach(event => {
+                resultsHTML += `
+                    <tr>
+                        <td>${event.activity}</td>
+                        <td>${event.category}</td>
+                        <td>${event.description}</td>
+                    </tr>
+                `;
+            });
+            
+            resultsHTML += '</tbody></table></div>';
+            searchResults.innerHTML = resultsHTML;
+        }
 
-    .center {
-      text-align: center;
-    }
-  </style>
+        // Initialize the table when the page loads
+        window.onload = function() {
+            displayEvents();
+        };
+    </script>
 </head>
-<body>
-    <header>
-        <h1>Senior Care</h1>
-        <nav class="navbar">
-            <ul>
-                <li><img src="logo.jpg" style="width: 45px; height: 45px;" alt="logo"></li>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="contact us.html">Contact Us</a></li>
-                <li><a href="about us.html">About Us</a></li>
-                <li><a href="services directory.html">Services Directory</a></li>
-                <li><a href="forum page.html">Community Forum</a></li>
-                <li><a href="resource_page.html">Health and Wellness Resource Center</a></li>
-                <li><a href="volunteers and organizations.html">Volunteers and Organizations</a></li>
-                <li><a href="events.html">Events</a></li>
-            </ul>
-        </nav>
+<body class="custom-bg">
+    <header class="bg-primary text-white p-3">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <h1 class="mb-0">Senior Care</h1>
+                <nav class="navbar navbar-expand-lg navbar-dark">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact us.html">Contact Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="services directory.html">Services Directory</a></li>
+                            <li class="nav-item"><a class="nav-link" href="forum page.html">Community Forum</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resource_page.html">Health and Wellness Resource Center</a></li>
+                            <li class="nav-item"><a class="nav-link" href="volunteers and organizations.html">Volunteers and Organizations</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="events.html">Events</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
     </header>
 
-  <h2>Events</h2>
-  <p style="font-size: 20px; font-weight: bold; text-align: center;">List of currently available events for seniors to partake in</p>
+    <main class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Events</h2>
+                <p class="fs-5 fw-bold text-center mb-4">List of currently available events for seniors to partake in</p>
+                
+                <!-- Search Form -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Search Events</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Search by activity, category, or description">
+                            <button class="btn btn-primary" type="button" onclick="searchEvents()">Search</button>
+                        </div>
+                        <div id="searchResults"></div>
+                    </div>
+                </div>
+                
+                <!-- Add Event Form -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Add New Event</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="eventCategory" class="form-label">Category</label>
+                            <select id="eventCategory" class="form-select">
+                                <option value="Health & Wellness">Health & Wellness</option>
+                                <option value="Learning & Personal Development">Learning & Personal Development</option>
+                                <option value="Creative & Social Engagement">Creative & Social Engagement</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventActivity" class="form-label">Activity</label>
+                            <input type="text" id="eventActivity" class="form-control" placeholder="Enter activity name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventDescription" class="form-label">Description</label>
+                            <textarea id="eventDescription" class="form-control" rows="3" placeholder="Enter description"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="addEvent()">Add Event</button>
+                    </div>
+                </div>
+                
+                <!-- Dynamic Events Table -->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="table-primary">
+                                <th>Activity</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody id="eventsTableBody">
+                            <!-- Table content will be populated dynamically by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
 
-  <table>
-    <tr>
-      <th>Activity</th>
-      <th>Description</th>
-    </tr>
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>Contact Info:</h3>
+                    <p>Phone: +968 7845 2247</p>
+                    <p>Email: SeniorCareOM@gmail.com</p>
+                    <p>Copyright © 2025 SeniorCareOM</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <img src="logo.jpg" class="img-fluid" style="width: 100px; height: 100px;" alt="logo">
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    <tr class="section-header">
-      <td colspan="2">Health & Wellness</td>
-    </tr>
-    <tr>
-      <td>Virtual Exercise Classes</td>
-      <td>Chair yoga, stretching, and low-impact aerobics are examples of online exercise programs.  accessible live or on demand to promote flexibility and physical wellness at the senior's own pace.</td>
-    </tr>
-    <tr>
-      <td>Cooking and Nutrition Webinars</td>
-      <td>Classes on healthy cooking that include meal planning, senior nutrition recipes and advice, and simple culinary demonstrations to encourage healthier eating and overall wellbeing.</td>
-    </tr>
-    <tr>
-      <td>Health and Wellness Webinars</td>
-      <td>Health specialists lead sessions on mental health, preventive care, and managing chronic diseases to educate and empower seniors with useful guidance.</td>
-    </tr>
-
-    <tr class="section-header">
-      <td colspan="2">Learning & Personal Development</td>
-    </tr>
-    <tr>
-      <td>Book Club</td>
-      <td>A virtual reading group with monthly book selections and video discussions.</td>
-    </tr>
-    <tr>
-      <td>Tech Help Sessions</td>
-      <td>Basic digital training sessions, teaching seniors how to use smartphones, computers and other digital devices</td>
-    </tr>
-    <tr>
-      <td>Local History and Culture Tours</td>
-      <td>local guided tours of museums and historical sites.</td>
-    </tr>
-
-    <tr class="section-header">
-      <td colspan="2">Creative & Social Engagement</td>
-    </tr>
-    <tr>
-      <td>Gardening Workshops</td>
-      <td>Classes on gardening methods such as container planting and herb growing can be held indoors or outdoors.</td>
-    </tr>
-    <tr>
-      <td>Art and Craft Classes</td>
-      <td>Creative workshops including painting, knitting, or scrapbooking.</td>
-    </tr>
-    <tr>
-      <td>Volunteer Match Program</td>
-      <td>connects elderly people with neighborhood volunteers for housework, errands, or company. Builds meaningful relationships.</td>
-    </tr>
-    <tr>
-      <td>Outdoor Camping Experiences</td>
-      <td>Organized day trips or overnight camping tailored to seniors. Activities include nature walks, birdwatching, and storytelling for outdoor enjoyment and social bonding.</td>
-    </tr>
-  </table>
-  <footer>
-    <img src="logo.jpg" style="width: 100px; height: 100px; float: right;" alt="logo">
-    <h3>Contact Info:</h3>
-    <p>Phone: +968 7845 2247</p>
-    <p>Email: SeniorCareOM@gmail.com</p>
-    <p>Copyright © 2025 SeniorCareOM</p>
-</footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

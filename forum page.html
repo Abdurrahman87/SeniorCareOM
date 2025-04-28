@@ -1,212 +1,238 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="stylesheet.css">
-        <style type="text/css">
-            ol span {color: red;}
-            select {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0 20px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Forum - Senior Care</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
         }
-            nav {
-                background-color: #333;
-                overflow: hidden;
-            }
-            nav a {
-                color: white;
-                padding: 14px 20px;
-                display: inline-block;
-                text-align: center;
-                text-decoration: none;
-            }
-            nav a:hover {
-                background-color: #ddd;
-                color: black;
-            }
-            .container {
-                margin: 20px;
-            }
-            .forum-topic {
-                background-color: white;
-                padding: 20px;
-                margin-bottom: 20px;
-                border-radius: 8px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            }
-            .forum-topic h3 {
-                color: #333;
-            }
-            .forum-topic p {
-                color: #555;
-            }
-            .post-btn {
-                background-color: #4CAF50;
-                color: white;
-                padding: 10px 15px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-            .post-btn:hover {
-                background-color: #45a049;
-            }
-            label {
-            display: block;
-            margin: 10px 0 5px;
-            color: #555;
+        .forum-topic {
+            transition: transform 0.3s;
         }
-        input[type="text"],
-        input[type="password"],
-        input[type="email"],
-        input[type="radio"],
-        input[type="checkbox"],
-        input[type="submit"],
-        input[type="reset"] {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0 20px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
+        .forum-topic:hover {
+            transform: scale(1.02);
         }
-        input[type="radio"],
-        input[type="checkbox"] {
-            width: auto;
+        ol span {
+            color: red;
+            font-weight: bold;
         }
-        .form-container h3 {
-            color: #333;
-        }
-        .form-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        </style>
-    </head>
-    <body>
-        <header>
-            <h1>Senior Care</h1>
-            <nav class="navbar">
-                <ul>
-                    <li><img src="logo.jpg" style="width: 45px; height: 45px;" alt="logo"></li>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="contact us.html">Contact Us</a></li>
-                    <li><a href="about us.html">About Us</a></li>
-                    <li><a href="services directory.html">Services Directory</a></li>
-                    <li><a href="forum page.html">Community Forum</a></li>
-                    <li><a href="resource_page.html">Health and Wellness Resource Center</a></li>
-                    <li><a href="volunteers and organizations.html">Volunteers and Organizations</a></li>
-                    <li><a href="events.html">Events</a></li>
-                </ul>
-            </nav>
-        </header>
-        <h2>Community Forum</h2>
+    </style>
+</head>
+<body>
+    <header class="bg-primary text-white p-3">
         <div class="container">
-            <p style="font-size: 20px; font-weight: bold;">Space for users to interact, ask questions, and share experiences:</p>
-            <p>Create profiles with secure passwords to engage in discussions in a variety of 
-                topics such as health tips, technology help, caregiving advise and hobbies. 
-                Remember to be respectful towards other users during discussion.</p>
-            <h2>Rules of the forum:</h2>
-            <ol>
-                <li>Be <span>courteous</span> and <span>respectful</span></li>
-                <li>Keep it <span>friendly</span></li>
-                <li>Stay on topic</li>
-                <li>Share your knowledge</li>
-                <li><span>No Spam</span> allowed</li>
-            </ol>
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <h1 class="mb-0">Senior Care</h1>
+                <nav class="navbar navbar-expand-lg navbar-dark">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact us.html">Contact Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="services directory.html">Services Directory</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="forum page.html">Community Forum</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resource_page.html">Health and Wellness Resource Center</a></li>
+                            <li class="nav-item"><a class="nav-link" href="volunteers and organizations.html">Volunteers and Organizations</a></li>
+                            <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         </div>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Discussions</a>
-            <a href="#">Resources</a>
-            <a href="#">Help</a>
-        </nav>
-    
-        <div class="container">
-            <div class="forum-topic">
-                <h3>How to Stay Active in Your Senior Years</h3>
-                <p>Join the discussion and share tips on staying healthy and active as we grow older!</p>
-            </div>
-    
-            <div class="forum-topic">
-                <h3>Technology for Seniors: What Are the Best Tools?</h3>
-                <p>Let's talk about tech tools that can help seniors with daily tasks. Share your experiences!</p>
-            </div>
-    
-            <div class="forum-topic">
-                <h3>Memory and Cognitive Health Tips</h3>
-                <p>Do you have advice or experiences with improving memory or cognitive health in senior years?</p>
-            </div>
-    
-            <div class="forum-topic">
-                <h3>General Advice and Support</h3>
-                <p>If you need help with anything or just want to chat, this is the place to be!</p>
-            </div>
-    
-            <button class="post-btn">Post a New Topic</button>
-        </div>
-            <div class="form-container">
-                <h3>Sign In to join the discussion!</h3>
-                <form action="https://httpbin.org/get" method="get">
-                    <label for="signin-email">Email:</label>
-                    <input type="email" id="signin-email" name="email" placeholder="Enter your email" required>
-                    
-                    <label for="signin-password">Password:</label>
-                    <input type="password" id="signin-password" name="password" placeholder="Enter your password" required>
-    
-                    <label for="remember-me">
-                        <input type="checkbox" id="remember-me" name="remember-me"> Remember me
-                    </label>
-    
-                    <input type="submit" value="Sign In">
-                    <input type="reset" value="Reset">
-                </form>
-            </div>
-            <div class="form-container">
-                <h3>New to the website? Sign Up to create an acount!</h3>
-                <form action="https://httpbin.org/get" method="get">
-                    <label for="signup-name">Full Name:</label>
-                    <input type="text" id="signup-name" name="name" placeholder="Enter your full name" required>
-                    
-                    <label for="signup-email">Email:</label>
-                    <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
-                    
-                    <label for="signup-password">Password:</label>
-                    <input type="password" id="signup-password" name="password" placeholder="Choose a password" required>
+    </header>
 
-                    <label for="user-type">Choose Your User Type:</label>
-                    <select id="user-type" name="user-type" required>
-                    <option value="" disabled selected>Select your role</option>
-                    <option value="senior">Senior</option>
-                    <option value="volunteer">Volunteer</option>
-                    <option value="family-member">Family Member</option>
-                    </select>
-    
-                    <label>Gender:</label>
-                    <input type="radio" id="male" name="gender" value="male">
-                    <label for="male">Male</label>
-                    <input type="radio" id="female" name="gender" value="female">
-                    <label for="female">Female</label>
-    
-                    <label for="terms">
-                        <input type="checkbox" id="terms" name="terms" required> I agree to the terms and conditions
-                    </label>
-    
-                    <input type="hidden" name="form-type" value="sign-up">
-                    
-                    <input type="submit" value="Sign Up">
-                    <input type="reset" value="Reset">
-                </form>
+    <main class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Community Forum</h2>
+                <div class="card p-4 mb-4">
+                    <p class="fs-5 fw-bold text-center mb-3">Space for users to interact, ask questions, and share experiences:</p>
+                    <p class="text-center">Create profiles with secure passwords to engage in discussions in a variety of 
+                        topics such as health tips, technology help, caregiving advise and hobbies. 
+                        Remember to be respectful towards other users during discussion.</p>
+                </div>
+
+                <div class="card p-4 mb-4">
+                    <h3 class="text-center mb-3">Rules of the forum:</h3>
+                    <ol class="fs-5">
+                        <li>Be <span>courteous</span> and <span>respectful</span></li>
+                        <li>Keep it <span>friendly</span></li>
+                        <li>Stay on topic</li>
+                        <li>Share your knowledge</li>
+                        <li><span>No Spam</span> allowed</li>
+                    </ol>
+                </div>
+
+                <div class="row g-4 mb-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card forum-topic h-100">
+                            <div class="card-body">
+                                <h3 class="card-title">How to Stay Active in Your Senior Years</h3>
+                                <p class="card-text">Join the discussion and share tips on staying healthy and active as we grow older!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card forum-topic h-100">
+                            <div class="card-body">
+                                <h3 class="card-title">Technology for Seniors: What Are the Best Tools?</h3>
+                                <p class="card-text">Let's talk about tech tools that can help seniors with daily tasks. Share your experiences!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card forum-topic h-100">
+                            <div class="card-body">
+                                <h3 class="card-title">Memory and Cognitive Health Tips</h3>
+                                <p class="card-text">Do you have advice or experiences with improving memory or cognitive health in senior years?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card forum-topic h-100">
+                            <div class="card-body">
+                                <h3 class="card-title">General Advice and Support</h3>
+                                <p class="card-text">If you need help with anything or just want to chat, this is the place to be!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mb-4">
+                    <button class="btn btn-primary btn-lg">Post a New Topic</button>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title text-center mb-4">Sign In to join the discussion!</h3>
+                                <form action="https://httpbin.org/get" method="get" class="needs-validation" novalidate>
+                                    <div class="mb-3">
+                                        <label for="signin-email" class="form-label">Email:</label>
+                                        <input type="email" class="form-control" id="signin-email" name="email" placeholder="Enter your email" required>
+                                        <div class="invalid-feedback">Please enter a valid email.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="signin-password" class="form-label">Password:</label>
+                                        <input type="password" class="form-control" id="signin-password" name="password" placeholder="Enter your password" required>
+                                        <div class="invalid-feedback">Please enter your password.</div>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="remember-me" name="remember-me">
+                                        <label class="form-check-label" for="remember-me">Remember me</label>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Sign In</button>
+                                        <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title text-center mb-4">New to the website? Sign Up to create an account!</h3>
+                                <form action="https://httpbin.org/get" method="get" class="needs-validation" novalidate>
+                                    <div class="mb-3">
+                                        <label for="signup-name" class="form-label">Full Name:</label>
+                                        <input type="text" class="form-control" id="signup-name" name="name" placeholder="Enter your full name" required>
+                                        <div class="invalid-feedback">Please enter your name.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="signup-email" class="form-label">Email:</label>
+                                        <input type="email" class="form-control" id="signup-email" name="email" placeholder="Enter your email" required>
+                                        <div class="invalid-feedback">Please enter a valid email.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="signup-password" class="form-label">Password:</label>
+                                        <input type="password" class="form-control" id="signup-password" name="password" placeholder="Choose a password" required>
+                                        <div class="invalid-feedback">Please choose a password.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="user-type" class="form-label">Choose Your User Type:</label>
+                                        <select class="form-select" id="user-type" name="user-type" required>
+                                            <option value="" disabled selected>Select your role</option>
+                                            <option value="senior">Senior</option>
+                                            <option value="volunteer">Volunteer</option>
+                                            <option value="family-member">Family Member</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select your role.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Gender:</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="male" name="gender" value="male">
+                                            <label class="form-check-label" for="male">Male</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" id="female" name="gender" value="female">
+                                            <label class="form-check-label" for="female">Female</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
+                                        <label class="form-check-label" for="terms">I agree to the terms and conditions</label>
+                                        <div class="invalid-feedback">You must agree to the terms.</div>
+                                    </div>
+                                    <input type="hidden" name="form-type" value="sign-up">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                                        <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        <footer>
-            <img src="logo.jpg" style="width: 100px; height: 100px; float: right;" alt="logo">
-            <h3>Contact Info:</h3>
-            <p>Phone: +968 7845 2247</p>
-            <p>Email: SeniorCareOM@gmail.com</p>
-            <p>Copyright © 2025 SeniorCareOM</p>
-        </footer>
-    </body>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>Contact Info:</h3>
+                    <p>Phone: +968 7845 2247</p>
+                    <p>Email: SeniorCareOM@gmail.com</p>
+                    <p>Copyright © 2025 SeniorCareOM</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <img src="logo.jpg" class="img-fluid" style="width: 100px; height: 100px;" alt="logo">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Form validation
+        (function() {
+            'use strict';
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms)
+                .forEach(function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+        })();
+    </script>
+</body>
 </html>

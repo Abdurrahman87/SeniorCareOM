@@ -1,49 +1,116 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="stylesheet.css">
-    </head>
-    <body>
-        <header>
-            <h1>Senior Care</h1>
-            <nav class="navbar">
-                <ul>
-                    <li><img src="logo.jpg" style="width: 45px; height: 45px;" alt="logo"></li>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="contact us.html">Contact Us</a></li>
-                    <li><a href="about us.html">About Us</a></li>
-                    <li><a href="services directory.html">Services Directory</a></li>
-                    <li><a href="forum page.html">Community Forum</a></li>
-                    <li><a href="resource_page.html">Health and Wellness Resource Center</a></li>
-                    <li><a href="volunteers and organizations.html">Volunteers and Organizations</a></li>
-                    <li><a href="events.html">Events</a></li>
-                </ul>
-            </nav>
-        </header>
-        <h2>Contact Us</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .custom-bg {
+            background-image: url('background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Senior Care</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="custom-bg">
+    <body class="bg-image" style="background-image: url('background.png'); margin: 0;"></body>
+    <header class="bg-primary text-white p-3">
         <div class="container">
-            <p style="font-size: 20px; font-weight: bold;">Want to communicate with us? Just fill up this form with your inquiries and it will be sent to our email address</p>
-            <form action = "mailto:seniorcareom@gmail.com" method="post" enctype="text/plain">
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" name="name" required>
-            <br>
-            <label for="email">Email Address:</label>
-            <input type="email" id="email" name="email" required>
-            <br>
-            <label for="subject">Subject:</label>
-            <input type="text" id="subject" name="subject" required>
-            <br>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-            <br>
-            <button type="submit">Send Message</button>
-        </form>
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <h1 class="mb-0">Senior Care</h1>
+                <nav class="navbar navbar-expand-lg navbar-dark">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="contact us.html">Contact Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="services directory.html">Services Directory</a></li>
+                            <li class="nav-item"><a class="nav-link" href="forum page.html">Community Forum</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resource_page.html">Health and Wellness Resource Center</a></li>
+                            <li class="nav-item"><a class="nav-link" href="volunteers and organizations.html">Volunteers and Organizations</a></li>
+                            <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         </div>
-        <footer>
-            <img src="logo.jpg" style="width: 100px; height: 100px; float: right;" alt="logo">
-            <h3>Contact Info:</h3>
-            <p>Phone: +968 7845 2247</p>
-            <p>Email: SeniorCareOM@gmail.com</p>
-            <p>Copyright © 2025 SeniorCareOM</p>
-        </footer>
-    </body>
+    </header>
+
+    <main class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Contact Us</h2>
+                <div class="card p-4">
+                    <p class="fs-5 fw-bold text-center mb-4">
+                        Want to communicate with us? Just fill up this form with your inquiries and it will be sent to our email address
+                    </p>
+                    <form action="mailto:seniorcareom@gmail.com" method="post" enctype="text/plain" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                            <div class="invalid-feedback">Please enter your name.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject:</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required>
+                            <div class="invalid-feedback">Please enter a subject.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message:</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                            <div class="invalid-feedback">Please enter your message.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>Contact Info:</h3>
+                    <p>Phone: +968 7845 2247</p>
+                    <p>Email: SeniorCareOM@gmail.com</p>
+                    <p>Copyright © 2025 SeniorCareOM</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <img src="logo.jpg" class="img-fluid" style="width: 100px; height: 100px;" alt="logo">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Form validation
+        (function() {
+            'use strict';
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms)
+                .forEach(function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+        })();
+    </script>
+</body>
 </html>

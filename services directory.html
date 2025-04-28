@@ -1,156 +1,264 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="stylesheet.css">
-        <style type="text/css">
-            table {
-      width: 90%;
-      margin: 30px auto;
-      border-collapse: separate;
-      border-spacing: 10px;
-      background-color: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Directory - Senior Care</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+        }
+        .highlight-cell {
+            background-color: #e8f5e9;
+            font-weight: bold;
+        }
+        #searchResults {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        // Object constructor for Services
+        function Service(serviceType, category, description) {
+            this.serviceType = serviceType;
+            this.category = category;
+            this.description = description;
+        }
 
-    thead {
-      background-color: #4caf50;
-      color: white;
-    }
+        // Array to store services
+        let servicesArray = [
+            new Service("Health Services", "Health Consultation", "Virtual access to doctors and nurses for medical advice and support."),
+            new Service("Health Services", "Mental Health Support", "Professional counseling and support groups for emotional well-being."),
+            new Service("Daily Living Support", "Caregiver Assistance", "Help and resources for caregivers, plus access to professional care."),
+            new Service("Daily Living Support", "Home Repair Services", "Help with minor repairs and safety upgrades to keep homes comfortable and secure."),
+            new Service("Daily Living Support", "Grocery Delivery", "Convenient grocery and meal delivery, customized for senior nutrition needs."),
+            new Service("Social Activities", "Social Events", "Join online games, discussions, and group activities to connect with others."),
+            new Service("Professional Services", "Legal Aid", "Consult with legal experts on wills, rights, and elder law at little or no cost."),
+            new Service("Professional Services", "Financial Planning", "Get help with budgeting, retirement plans, and social security assistance."),
+            new Service("Transportation Services", "Transportation", "Access reliable transport to appointments, grocery stores, or social events."),
+            new Service("Technology Assistance", "Technology Support", "Friendly tech help to navigate phones, apps, computers, and more.")
+        ];
 
-    th, td {
-      padding: 20px 25px;
-      text-align: left;
-      vertical-align: top;
-      border-bottom: 1px solid #e0e0e0;
-    }
+        // Function to display services in the table
+        function displayServices() {
+            const tableBody = document.getElementById('servicesTableBody');
+            tableBody.innerHTML = '';
+            
+            let currentServiceType = '';
+            let rowCount = 0;
+            
+            servicesArray.forEach(service => {
+                const row = document.createElement('tr');
+                
+                if (currentServiceType !== service.serviceType) {
+                    currentServiceType = service.serviceType;
+                    rowCount = 1;
+                    
+                    // Create cell for service type that may span multiple rows
+                    const serviceTypeCell = document.createElement('td');
+                    serviceTypeCell.className = 'highlight-cell';
+                    serviceTypeCell.textContent = service.serviceType;
+                    
+                    // Count how many rows this service type will span
+                    const sameTypeCount = servicesArray.filter(s => s.serviceType === service.serviceType).length;
+                    serviceTypeCell.rowSpan = sameTypeCount;
+                    
+                    row.appendChild(serviceTypeCell);
+                } else {
+                    rowCount++;
+                }
+                
+                // Add category and description cells
+                const categoryCell = document.createElement('td');
+                categoryCell.textContent = service.category;
+                row.appendChild(categoryCell);
+                
+                const descriptionCell = document.createElement('td');
+                descriptionCell.textContent = service.description;
+                row.appendChild(descriptionCell);
+                
+                tableBody.appendChild(row);
+            });
+        }
 
-    th {
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+        // Function to add a new service
+        function addService() {
+            const serviceType = document.getElementById('serviceType').value;
+            const category = document.getElementById('serviceCategory').value;
+            const description = document.getElementById('serviceDescription').value;
+            
+            if (serviceType && category && description) {
+                const newService = new Service(serviceType, category, description);
+                servicesArray.push(newService);
+                displayServices();
+                
+                // Clear form fields
+                document.getElementById('serviceType').value = '';
+                document.getElementById('serviceCategory').value = '';
+                document.getElementById('serviceDescription').value = '';
+            } else {
+                alert('Please fill in all fields');
+            }
+        }
 
-    td {
-      font-size: 0.95rem;
-      color: #333;
-    }
+        // Function to search services
+        function searchServices() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const searchResults = document.getElementById('searchResults');
+            
+            if (!searchTerm) {
+                searchResults.innerHTML = '';
+                return;
+            }
+            
+            const filteredServices = servicesArray.filter(service => 
+                service.serviceType.toLowerCase().includes(searchTerm) || 
+                service.category.toLowerCase().includes(searchTerm) || 
+                service.description.toLowerCase().includes(searchTerm)
+            );
+            
+            if (filteredServices.length === 0) {
+                searchResults.innerHTML = '<p class="alert alert-info">No matching services found</p>';
+                return;
+            }
+            
+            let resultsHTML = '<div class="table-responsive"><table class="table table-bordered table-hover">';
+            resultsHTML += '<thead><tr class="table-primary"><th>Service Type</th><th>Category</th><th>Description</th></tr></thead><tbody>';
+            
+            filteredServices.forEach(service => {
+                resultsHTML += `
+                    <tr>
+                        <td>${service.serviceType}</td>
+                        <td>${service.category}</td>
+                        <td>${service.description}</td>
+                    </tr>
+                `;
+            });
+            
+            resultsHTML += '</tbody></table></div>';
+            searchResults.innerHTML = resultsHTML;
+        }
 
-    tbody tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-
-    tbody tr:hover {
-      background-color: #f1f8e9;
-    }
-
-    thead tr:first-child th:first-child {
-      border-top-left-radius: 12px;
-    }
-
-    thead tr:first-child th:last-child {
-      border-top-right-radius: 12px;
-    }
-
-    tbody tr:last-child td:first-child {
-      border-bottom-left-radius: 12px;
-    }
-
-    tbody tr:last-child td:last-child {
-      border-bottom-right-radius: 12px;
-    }
-    
-    .highlight-cell {
-      background-color: #e8f5e9;
-      font-weight: bold;
-    }
-        </style>
-    </head>
-    <body>
-      <header>
-        <h1>Senior Care</h1>
-        <nav class="navbar">
-            <ul>
-                <li><img src="logo.jpg" style="width: 45px; height: 45px;" alt="logo"></li>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="contact us.html">Contact Us</a></li>
-                <li><a href="about us.html">About Us</a></li>
-                <li><a href="services directory.html">Services Directory</a></li>
-                <li><a href="forum page.html">Community Forum</a></li>
-                <li><a href="resource_page.html">Health and Wellness Resource Center</a></li>
-                <li><a href="volunteers and organizations.html">Volunteers and Organizations</a></li>
-                <li><a href="events.html">Events</a></li>
-            </ul>
-        </nav>
+        // Initialize the table when the page loads
+        window.onload = function() {
+            displayServices();
+        };
+    </script>
+</head>
+<body>
+    <header class="bg-primary text-white p-3">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <h1 class="mb-0">Senior Care</h1>
+                <nav class="navbar navbar-expand-lg navbar-dark">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact us.html">Contact Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="services directory.html">Services Directory</a></li>
+                            <li class="nav-item"><a class="nav-link" href="forum page.html">Community Forum</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resource_page.html">Health and Wellness Resource Center</a></li>
+                            <li class="nav-item"><a class="nav-link" href="volunteers and organizations.html">Volunteers and Organizations</a></li>
+                            <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
     </header>
-        <h2>Services Directory</h2>
-        <p style="font-size: 20px; font-weight: bold; text-align: center;">List of currently available services</p>
-        <table>
-            <thead>
-              <tr>
-                <th colspan="3">Senior Care Services Directory</th>
-              </tr>
-              <tr>
-                <th>Service Type</th>  <!-- Changed from "Service Name" -->
-                <th>Category</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td rowspan="2" class="highlight-cell">Health Services</td>
-                <td>Health Consultation</td>
-                <td>Virtual access to doctors and nurses for medical advice and support.</td>
-              </tr>
-              <tr>
-                <td>Mental Health Support</td>
-                <td>Professional counseling and support groups for emotional well-being.</td>
-              </tr>
-              <tr>
-                <td rowspan="3" class="highlight-cell">Daily Living Support</td>
-                <td>Caregiver Assistance</td>
-                <td>Help and resources for caregivers, plus access to professional care.</td>
-              </tr>
-              <tr>
-                <td>Home Repair Services</td>
-                <td>Help with minor repairs and safety upgrades to keep homes comfortable and secure.</td>
-              </tr>
-              <tr>
-                <td>Grocery Delivery</td>
-                <td>Convenient grocery and meal delivery, customized for senior nutrition needs.</td>
-              </tr>
-              <tr>
-                <td class="highlight-cell">Social Activities</td>  <!-- Added specific service name -->
-                <td>Social Events</td>
-                <td>Join online games, discussions, and group activities to connect with others.</td>
-              </tr>
-              <tr>
-                <td rowspan="2" class="highlight-cell">Professional Services</td>
-                <td>Legal Aid</td>
-                <td>Consult with legal experts on wills, rights, and elder law at little or no cost.</td>
-              </tr>
-              <tr>
-                <td>Financial Planning</td>
-                <td>Get help with budgeting, retirement plans, and social security assistance.</td>
-              </tr>
-              <tr>
-                <td class="highlight-cell">Transportation Services</td>
-                <td>Transportation</td>
-                <td>Access reliable transport to appointments, grocery stores, or social events.</td>
-              </tr>
-              <tr>
-                <td class="highlight-cell">Technology Assistance</td>
-                <td>Technology Support</td>
-                <td>Friendly tech help to navigate phones, apps, computers, and more.</td>
-              </tr>
-            </tbody>
-          </table>
-        <footer>
-            <img src="logo.jpg" style="width: 100px; height: 100px; float: right;" alt="logo">
-            <h3>Contact Info:</h3>
-            <p>Phone: +968 7845 2247</p>
-            <p>Email: SeniorCareOM@gmail.com</p>
-            <p>Copyright © 2025 SeniorCareOM</p>
-        </footer>
-    </body>
+
+    <main class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Services Directory</h2>
+                <p class="fs-5 fw-bold text-center mb-5">List of currently available services</p>
+                
+                <!-- Search Form -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Search Services</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Search by service type, category, or description">
+                            <button class="btn btn-primary" type="button" onclick="searchServices()">Search</button>
+                        </div>
+                        <div id="searchResults"></div>
+                    </div>
+                </div>
+                
+                <!-- Add Service Form -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Add New Service</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="serviceType" class="form-label">Service Type</label>
+                            <input type="text" id="serviceType" class="form-control" placeholder="Enter service type">
+                        </div>
+                        <div class="mb-3">
+                            <label for="serviceCategory" class="form-label">Category</label>
+                            <input type="text" id="serviceCategory" class="form-control" placeholder="Enter category">
+                        </div>
+                        <div class="mb-3">
+                            <label for="serviceDescription" class="form-label">Description</label>
+                            <textarea id="serviceDescription" class="form-control" rows="3" placeholder="Enter description"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="addService()">Add Service</button>
+                    </div>
+                </div>
+                
+                <!-- Dynamic Services Table -->
+                <div class="card mb-5">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th colspan="3" class="text-center">Senior Care Services Directory</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Service Type</th>
+                                        <th>Category</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="servicesTableBody">
+                                    <!-- Table content will be populated dynamically by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>Contact Info:</h3>
+                    <p>Phone: +968 7845 2247</p>
+                    <p>Email: SeniorCareOM@gmail.com</p>
+                    <p>Copyright © 2025 SeniorCareOM</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <img src="logo.jpg" class="img-fluid" style="width: 100px; height: 100px;" alt="logo">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
