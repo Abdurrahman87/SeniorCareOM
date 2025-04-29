@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Bill Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .custom-bg {
+            background-image: url('background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+        }
+        .calculator-container {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .result-box {
+            border-left: 5px solid #0d6efd;
+            background-color: white;
+        }
+            /* Regular footer without extra padding */
+        .footer-padding {
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="custom-bg">
+    <header class="bg-primary text-white p-3">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <h1 class="mb-0">Senior Care</h1>
+                <nav class="navbar navbar-expand-lg navbar-dark">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact us.html">Contact Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="services directory.html">Services Directory</a></li>
+                            <li class="nav-item"><a class="nav-link" href="forum page.html">Community Forum</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resource_page.html">Health and Wellness Resource Center</a></li>
+                            <li class="nav-item"><a class="nav-link" href="volunteers and organizations.html">Volunteers and Organizations</a></li>
+                            <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                            <li class="nav-item"><a class="nav-link" href="questionnaire page.html">Feedback Questionnaire</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="calculate page.html">Service Bill Calculator</a></li>
+                            <li class="nav-item"><a class="nav-link" href="funpage.html">Fun Math Game</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container my-5">
+        <div class="calculator-container">
+            <h2 class="text-center mb-4 text-secondary">Service Bill Calculator</h2>
+            <form id="billForm">
+                <div class="mb-3">
+                    <label for="age" class="form-label text-secondary">Your Age:</label>
+                    <input type="number" class="form-control" id="age" min="1" max="120" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="careHours" class="form-label text-secondary">In-Home Care (hours):</label>
+                    <input type="number" class="form-control" id="careHours" min="0" value="0">
+                </div>
+
+                <div class="mb-3">
+                    <label for="tickets" class="form-label text-secondary">Community Events (tickets):</label>
+                    <input type="number" class="form-control" id="tickets" min="0" value="0">
+                </div>
+
+                <div class="mb-3">
+                    <label for="wellness" class="form-label text-secondary">Wellness Sessions:</label>
+                    <input type="number" class="form-control" id="wellness" min="0" value="0">
+                </div>
+
+                <button type="button" id="calculateBtn" class="btn btn-primary w-100 mt-4">Calculate Total</button>
+            </form>
+
+            <div class="result-box p-3 mt-4 d-none" id="resultBox"></div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 footer-padding mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>Contact Info:</h3>
+                    <p>Phone: +968 7845 2247</p>
+                    <p>Email: SeniorCareOM@gmail.com</p>
+                    <p>Copyright © 2025 SeniorCareOM</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <img src="logo.jpg" class="img-fluid" style="width: 100px; height: 100px;" alt="logo">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+
+        // Bill calculation function
+        document.getElementById('calculateBtn').addEventListener('click', function() {
+            var age = parseInt(document.getElementById("age").value);
+            var care = parseInt(document.getElementById("careHours").value);
+            var events = parseInt(document.getElementById("tickets").value);
+            var sessions = parseInt(document.getElementById("wellness").value);
+
+            if (isNaN(age)) age = 0;
+            if (isNaN(care)) care = 0;
+            if (isNaN(events)) events = 0;
+            if (isNaN(sessions)) sessions = 0;
+
+            var careCost = care * 25;
+            var eventCost = events * 15;
+            var sessionCost = sessions * 30;
+
+            var total = careCost + eventCost + sessionCost;
+
+            var discount = 0;
+            if (age > 60) {
+                discount = total * 0.1;
+                total = total - discount;
+            }
+
+            var resultBox = document.getElementById("resultBox");
+            resultBox.classList.remove('d-none');
+            resultBox.innerHTML = 
+                "Total before discount: $" + (careCost + eventCost + sessionCost).toFixed(2) + "<br>" +
+                (age > 60 ? "Senior discount (10%): -$" + discount.toFixed(2) + "<br>" : "") +
+                "Final Total: <b>$" + total.toFixed(2) + "</b>";
+        });
+    </script>
+</body>
+</html>

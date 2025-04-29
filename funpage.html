@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solve the MATH Mystery Game!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .custom-bg {
+            background-image: url('background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+        }
+        .puzzle-container {
+            max-width: 450px;
+            aspect-ratio: 1/1;
+            background-color: #a7f3d0; 
+            border: 4px solid #7f1d1d; 
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .puzzle-text {
+            color: #eab308;
+            font-weight: 800;
+        }
+        .game-button {
+            transition: transform 0.2s;
+        }
+        .game-button:hover {
+            transform: scale(1.1);
+        }
+        .footer-padding {
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="custom-bg">
+    <header class="bg-primary text-white p-3">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <h1 class="mb-0">Senior Care</h1>
+                <nav class="navbar navbar-expand-lg navbar-dark">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact us.html">Contact Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="services directory.html">Services Directory</a></li>
+                            <li class="nav-item"><a class="nav-link" href="forum page.html">Community Forum</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resource_page.html">Health and Wellness Resource Center</a></li>
+                            <li class="nav-item"><a class="nav-link" href="volunteers and organizations.html">Volunteers and Organizations</a></li>
+                            <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                            <li class="nav-item"><a class="nav-link" href="questionnaire page.html">Feedback Questionnaire</a></li>
+                            <li class="nav-item"><a class="nav-link" href="calculate page.html">Service Bill Calculator</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="funpage.html">Fun Math Game</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container d-flex flex-column align-items-center justify-content-center my-5">
+        <h1 class="text-danger fw-bold fs-1 mb-4 text-center">Solve the MATH Mystery Game!</h1>
+
+        <div id="puzzle" class="puzzle-container d-flex flex-column align-items-center justify-content-center p-4"></div>
+
+        <div class="mt-4 w-100" style="max-width: 450px;">
+            <input id="input" type="text" class="form-control form-control-lg" placeholder="Enter your answer">
+        </div>
+
+        <div class="mt-4 d-flex flex-column flex-sm-row gap-3">
+            <button id="check" onclick="checkAnswer()" class="btn btn-primary btn-lg game-button px-4 py-2">
+                Answer 🧩
+            </button>
+            <button id="reset" onclick="showPuzzle()" class="btn btn-danger btn-lg game-button px-4 py-2">
+                Reset 🔄
+            </button>
+        </div>
+
+        <p id="result" class="fs-3 fw-bold text-warning text-center mt-4"></p>
+    </div>
+
+    <footer class="bg-dark text-white py-4 footer-padding mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>Contact Info:</h3>
+                    <p>Phone: +968 7845 2247</p>
+                    <p>Email: SeniorCareOM@gmail.com</p>
+                    <p>Copyright © 2025 SeniorCareOM</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <img src="logo.jpg" class="img-fluid" style="width: 100px; height: 100px;" alt="logo">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        var puzzleIN = document.getElementById("puzzle");
+        var resultIN = document.getElementById("result");
+        var finalAnswer;
+        
+        function showPuzzle() {
+            document.getElementById("input").value = "";
+            resultIN.innerHTML = "";
+            var m = Math.floor(Math.random() * 10);
+            var t = Math.floor(Math.random() * 10);
+            finalAnswer = m*(m+1)*t*(t - (m+1));
+            
+            puzzleIN.innerHTML=
+                `<p class="puzzle-text fs-2 mb-3 text-center">M = ${m}</p>
+                <p class="puzzle-text fs-2 mb-3 text-center">A = M + 1</p>
+                <p class="puzzle-text fs-2 mb-3 text-center">T = ${t}</p>
+                <p class="puzzle-text fs-2 mb-3 text-center">H = T - A</p>
+                <p class="puzzle-text fs-2 mb-4 text-center">Find MATH?</p>`;
+        }
+        
+        window.onload = function() {showPuzzle();};
+        
+        function checkAnswer() {
+            var userInput = document.getElementById("input").value;
+            
+            if (userInput == finalAnswer){
+                resultIN.innerHTML = "🎉 Good Job, You Are Right 🎉";
+            } else {
+                resultIN.innerHTML = `❌ Incorrect. Try again! <br> The correct Answer Is: ${finalAnswer}`;
+            }
+        }
+    </script>
+</body>
+</html>
