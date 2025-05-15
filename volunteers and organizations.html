@@ -26,17 +26,21 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="contact us.html">Contact Us</a></li>
                             <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
                             <li class="nav-item"><a class="nav-link" href="services directory.html">Services Directory</a></li>
+                            <li class="nav-item"><a class="nav-link" href="search_services.php">Search Services</a></li>
                             <li class="nav-item"><a class="nav-link" href="forum page.html">Community Forum</a></li>
                             <li class="nav-item"><a class="nav-link" href="resource_page.html">Health and Wellness Resource Center</a></li>
-                            <li class="nav-item"><a class="nav-link active" href="volunteers and organizations.html">Volunteers and Organizations</a></li>
+                            <li class="nav-item"><a class="nav-link" href="volunteers and organizations.html">Volunteers and Organizations</a></li>
                             <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
                             <li class="nav-item"><a class="nav-link" href="questionnaire page.html">Feedback Questionnaire</a></li>
                             <li class="nav-item"><a class="nav-link" href="calculate page.html">Service Bill Calculator</a></li>
                             <li class="nav-item"><a class="nav-link" href="funpage.html">Fun Math Game</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="delete_service.php">Delete Service</a></li>
+                            <li class="nav-item"><a class="nav-link" href="update_service.php">Update Service</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="add_service.php">Add Service</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -62,7 +66,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <h2 class="card-title text-center mb-4">Volunteer Registration Form</h2>
-                                <form action="https://httpbin.org/get" method="get" class="needs-validation" novalidate>
+                                <!-- Modified form to submit to PHP script -->
+                                <form action="process_volunteer.php" method="post" class="needs-validation" novalidate>
                                     <div class="mb-3">
                                         <label for="Name" class="form-label">Full Name</label>
                                         <input type="text" class="form-control" id="Name" name="volunteerName" required>
@@ -75,7 +80,8 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="Phone" class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-control" id="Phone" name="volunteerPhone">
+                                        <input type="tel" class="form-control" id="Phone" name="volunteerPhone" required>
+                                        <div class="invalid-feedback">Please enter a valid 8-digit phone number.</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="Availability" class="form-label">Availability</label>
@@ -97,7 +103,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <h2 class="card-title text-center mb-4">Organization Registration Form</h2>
-                                <form action="https://httpbin.org/get" method="get" class="needs-validation" novalidate>
+                                <!-- Modified form to submit to PHP script -->
+                                <form action="process_organization.php" method="post" class="needs-validation" novalidate>
                                     <div class="mb-3">
                                         <label for="orgName" class="form-label">Organization Name</label>
                                         <input type="text" class="form-control" id="orgName" name="organization_name" required>
@@ -115,7 +122,8 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="orgPhone" class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-control" id="orgPhone" name="organizationPhone">
+                                        <input type="tel" class="form-control" id="orgPhone" name="organizationPhone" required>
+                                        <div class="invalid-feedback">Please enter a valid 8-digit phone number.</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="Services" class="form-label">Services Provided</label>
@@ -151,22 +159,5 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Form validation
-        (function() {
-            'use strict';
-            var forms = document.querySelectorAll('.needs-validation');
-            Array.prototype.slice.call(forms)
-                .forEach(function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-        })();
-    </script>
 </body>
 </html>

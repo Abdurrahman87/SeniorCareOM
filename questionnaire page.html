@@ -37,17 +37,21 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="contact us.html">Contact Us</a></li>
                             <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
                             <li class="nav-item"><a class="nav-link" href="services directory.html">Services Directory</a></li>
+                            <li class="nav-item"><a class="nav-link" href="search_services.php">Search Services</a></li>
                             <li class="nav-item"><a class="nav-link" href="forum page.html">Community Forum</a></li>
                             <li class="nav-item"><a class="nav-link" href="resource_page.html">Health and Wellness Resource Center</a></li>
                             <li class="nav-item"><a class="nav-link" href="volunteers and organizations.html">Volunteers and Organizations</a></li>
                             <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
-                            <li class="nav-item"><a class="nav-link active" href="questionnaire page.html">Feedback Questionnaire</a></li>
+                            <li class="nav-item"><a class="nav-link" href="questionnaire page.html">Feedback Questionnaire</a></li>
                             <li class="nav-item"><a class="nav-link" href="calculate page.html">Service Bill Calculator</a></li>
                             <li class="nav-item"><a class="nav-link" href="funpage.html">Fun Math Game</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="delete_service.php">Delete Service</a></li>
+                            <li class="nav-item"><a class="nav-link" href="update_service.php">Update Service</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="add_service.php">Add Service</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -58,57 +62,66 @@
     <div class="container my-5">
         <div class="questionnaire-container">
             <h2 class="text-center mb-4 text-secondary">Feedback Questionnaire</h2>
-            <form id="questionnaireForm" onsubmit="return validateForm()">
+            <!-- Form configured to submit to PHP script with proper method and encoding -->
+            <form id="questionnaireForm" action="process_feedback.php" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="name" class="form-label text-secondary">Full Name:</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
-                    <div class="text-danger small" id="nameError"></div>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                    <div class="invalid-feedback">Please enter your name</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label text-secondary">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                    <div class="invalid-feedback">Please enter a valid email address</div>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label text-secondary">How would you rate our website?</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="rate" id="rateExcellent" value="Excellent">
+                        <input class="form-check-input" type="radio" name="rating" id="rateExcellent" value="Excellent" required>
                         <label class="form-check-label" for="rateExcellent">Excellent</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="rate" id="rateGood" value="Good">
+                        <input class="form-check-input" type="radio" name="rating" id="rateGood" value="Good">
                         <label class="form-check-label" for="rateGood">Good</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="rate" id="rateBad" value="Bad">
+                        <input class="form-check-input" type="radio" name="rating" id="rateBad" value="Bad">
                         <label class="form-check-label" for="rateBad">Bad</label>
                     </div>
+                    <div class="invalid-feedback">Please select a rating</div>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label text-secondary">Which features do you choose?</label>
+                    <label class="form-label text-secondary">Which features do you prefer? (Select all that apply)</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="features" id="featureCare" value="In-home care">
+                        <input class="form-check-input feature-checkbox" type="checkbox" name="features[]" id="featureCare" value="In-home care">
                         <label class="form-check-label" for="featureCare">In-home care</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="features" id="featureEvents" value="Events">
+                        <input class="form-check-input feature-checkbox" type="checkbox" name="features[]" id="featureEvents" value="Events">
                         <label class="form-check-label" for="featureEvents">Events</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="features" id="featureForum" value="Forum">
+                        <input class="form-check-input feature-checkbox" type="checkbox" name="features[]" id="featureForum" value="Forum">
                         <label class="form-check-label" for="featureForum">Forum</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="features" id="featureDirectory" value="Directory">
+                        <input class="form-check-input feature-checkbox" type="checkbox" name="features[]" id="featureDirectory" value="Directory">
                         <label class="form-check-label" for="featureDirectory">Directory</label>
                     </div>
-                    <div class="text-danger small" id="featuresError"></div>
+                    <div id="featuresError" class="text-danger small"></div>
                 </div>
 
                 <div class="mb-4">
                     <label for="feedback" class="form-label text-secondary">Any suggestions to improve?</label>
                     <textarea class="form-control" id="feedback" name="feedback" rows="4"></textarea>
-                    <div class="text-danger small" id="feedbackError"></div>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                </div>
             </form>
         </div>
     </div>
@@ -130,38 +143,40 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script>
-        function validateForm() {
+        // Form validation script
+        document.getElementById('questionnaireForm').addEventListener('submit', function(event) {
             let isValid = true;
-
-            const name = document.getElementById("name").value.trim();
-            const namePattern = /^[A-Z][a-z]+(\s[A-Z][a-z]+)+$/; 
-            if (!namePattern.test(name)) {
-                document.getElementById("nameError").innerText = "Please enter your full name with proper capitalization";
+            
+            // Validate name
+            const nameInput = document.getElementById('name');
+            if (!nameInput.value.trim()) {
+                document.getElementById('nameError').textContent = 'Please enter your name';
                 isValid = false;
             } else {
-                document.getElementById("nameError").innerText = "";
+                document.getElementById('nameError').textContent = '';
             }
-
-            const featureCheckboxes = document.querySelectorAll("input[name='features']:checked");
-            if (featureCheckboxes.length < 1) {
-                document.getElementById("featuresError").innerText = "Please select at least one feature you use.";
+            
+            // Validate that at least one feature is selected
+            const featureCheckboxes = document.querySelectorAll('.feature-checkbox');
+            let featuresSelected = false;
+            featureCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    featuresSelected = true;
+                }
+            });
+            
+            if (!featuresSelected) {
+                document.getElementById('featuresError').textContent = 'Please select at least one feature';
                 isValid = false;
             } else {
-                document.getElementById("featuresError").innerText = "";
+                document.getElementById('featuresError').textContent = '';
             }
-
-            const feedback = document.getElementById("feedback").value.trim();
-            if (feedback.length > 0 && feedback.length < 20) {
-                document.getElementById("feedbackError").innerText = "Please enter at least 20 characters of feedback.";
-                isValid = false;
-            } else {
-                document.getElementById("feedbackError").innerText = "";
+            
+            if (!isValid) {
+                event.preventDefault();
             }
-
-            return isValid;
-        }
+        });
     </script>
 </body>
 </html>
